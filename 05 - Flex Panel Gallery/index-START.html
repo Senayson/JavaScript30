@@ -62,13 +62,20 @@
     .panel > * {
       margin: 0;
       width: 100%;
-      border: 1px solid red;
+      /* border: 1px solid red; */
       transition: transform 0.5s;
       flex: 1 0 auto;
       display: flex;
       justify-content: center;
       align-items: center;
     }
+
+    .panel > *:first-child { transform: translateY(-100%); }
+    .panel.open-active > *:first-child { transform: translateY(0); }
+    .panel > *:last-child { transform: translateY(100%); }
+    .panel.open-active > *:last-child { transform: translateY(0); }
+
+    /* .panel > *:first-child:hover {  } */
 
     .panel p {
       text-transform: uppercase;
@@ -82,7 +89,8 @@
     }
 
     .panel.open {
-      font-size: 40px;
+      flex: 5;
+      font-size: 40px; 
     }
 
   </style>
@@ -117,6 +125,14 @@
   </div>
 
   <script>
+
+    const panels = document.querySelectorAll(' .panel');
+
+    function toggleOpen(){
+      this.classList.toggle('open');
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
 
   </script>
 
